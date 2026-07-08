@@ -27,7 +27,7 @@ const CATEGORY_LABEL: Record<string, string> = {
 
 function PlaceholderCalc() {
   const { category, slug } = Route.useParams();
-  const title = slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) + " Calculator";
+  const title = slug.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase()) + " Calculator";
   const catLabel = CATEGORY_LABEL[category] ?? "Calculators";
   return (
     <Layout>

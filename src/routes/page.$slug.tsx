@@ -20,7 +20,7 @@ export const Route = createFileRoute("/page/$slug")({
 
 function PagePlaceholder() {
   const { slug } = Route.useParams();
-  const title = slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const title = slug.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase());
   return (
     <Layout>
       <PlaceholderPage title={title} breadcrumb={[title]} />
