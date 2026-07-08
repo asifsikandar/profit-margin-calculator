@@ -18,7 +18,7 @@ export function Header() {
         </Link>
         <nav className="flex flex-wrap gap-1">
           {tabs.map((t) => {
-            const active = pathname === t.to || (t.to !== "/" && pathname.startsWith(t.to));
+            const active = pathname.startsWith(t.to);
             return (
               <Link
                 key={t.to}
