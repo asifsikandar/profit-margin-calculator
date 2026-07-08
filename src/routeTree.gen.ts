@@ -9,38 +9,148 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OtherRouteImport } from './routes/other'
+import { Route as MathRouteImport } from './routes/math'
+import { Route as FitnessAndHealthRouteImport } from './routes/fitness-and-health'
+import { Route as FinancialRouteImport } from './routes/financial'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PageSlugRouteImport } from './routes/page.$slug'
+import { Route as CalculatorCategorySlugRouteImport } from './routes/calculator.$category.$slug'
 
+const OtherRoute = OtherRouteImport.update({
+  id: '/other',
+  path: '/other',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MathRoute = MathRouteImport.update({
+  id: '/math',
+  path: '/math',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FitnessAndHealthRoute = FitnessAndHealthRouteImport.update({
+  id: '/fitness-and-health',
+  path: '/fitness-and-health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinancialRoute = FinancialRouteImport.update({
+  id: '/financial',
+  path: '/financial',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PageSlugRoute = PageSlugRouteImport.update({
+  id: '/page/$slug',
+  path: '/page/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorCategorySlugRoute = CalculatorCategorySlugRouteImport.update({
+  id: '/calculator/$category/$slug',
+  path: '/calculator/$category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/financial': typeof FinancialRoute
+  '/fitness-and-health': typeof FitnessAndHealthRoute
+  '/math': typeof MathRoute
+  '/other': typeof OtherRoute
+  '/page/$slug': typeof PageSlugRoute
+  '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/financial': typeof FinancialRoute
+  '/fitness-and-health': typeof FitnessAndHealthRoute
+  '/math': typeof MathRoute
+  '/other': typeof OtherRoute
+  '/page/$slug': typeof PageSlugRoute
+  '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/financial': typeof FinancialRoute
+  '/fitness-and-health': typeof FitnessAndHealthRoute
+  '/math': typeof MathRoute
+  '/other': typeof OtherRoute
+  '/page/$slug': typeof PageSlugRoute
+  '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/financial'
+    | '/fitness-and-health'
+    | '/math'
+    | '/other'
+    | '/page/$slug'
+    | '/calculator/$category/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/financial'
+    | '/fitness-and-health'
+    | '/math'
+    | '/other'
+    | '/page/$slug'
+    | '/calculator/$category/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/financial'
+    | '/fitness-and-health'
+    | '/math'
+    | '/other'
+    | '/page/$slug'
+    | '/calculator/$category/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FinancialRoute: typeof FinancialRoute
+  FitnessAndHealthRoute: typeof FitnessAndHealthRoute
+  MathRoute: typeof MathRoute
+  OtherRoute: typeof OtherRoute
+  PageSlugRoute: typeof PageSlugRoute
+  CalculatorCategorySlugRoute: typeof CalculatorCategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/other': {
+      id: '/other'
+      path: '/other'
+      fullPath: '/other'
+      preLoaderRoute: typeof OtherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/math': {
+      id: '/math'
+      path: '/math'
+      fullPath: '/math'
+      preLoaderRoute: typeof MathRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fitness-and-health': {
+      id: '/fitness-and-health'
+      path: '/fitness-and-health'
+      fullPath: '/fitness-and-health'
+      preLoaderRoute: typeof FitnessAndHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financial': {
+      id: '/financial'
+      path: '/financial'
+      fullPath: '/financial'
+      preLoaderRoute: typeof FinancialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +158,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/page/$slug': {
+      id: '/page/$slug'
+      path: '/page/$slug'
+      fullPath: '/page/$slug'
+      preLoaderRoute: typeof PageSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculator/$category/$slug': {
+      id: '/calculator/$category/$slug'
+      path: '/calculator/$category/$slug'
+      fullPath: '/calculator/$category/$slug'
+      preLoaderRoute: typeof CalculatorCategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FinancialRoute: FinancialRoute,
+  FitnessAndHealthRoute: FitnessAndHealthRoute,
+  MathRoute: MathRoute,
+  OtherRoute: OtherRoute,
+  PageSlugRoute: PageSlugRoute,
+  CalculatorCategorySlugRoute: CalculatorCategorySlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
