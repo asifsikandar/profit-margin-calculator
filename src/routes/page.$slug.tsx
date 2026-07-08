@@ -4,7 +4,7 @@ import { PlaceholderPage } from "@/components/PlaceholderPage";
 
 export const Route = createFileRoute("/page/$slug")({
   head: ({ params }) => {
-    const title = params.slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    const title = params.slug.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase());
     return {
       meta: [
         { title: `${title} | ProfitCalc` },
