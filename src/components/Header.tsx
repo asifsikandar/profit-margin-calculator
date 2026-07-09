@@ -15,7 +15,6 @@ export function Header() {
         <Link to="/" className="text-2xl font-extrabold tracking-tight text-white hover:no-underline">
           <span className="text-white">Profit</span>
           <span className="text-lime">Calc</span>
-          <span className="text-white/70 text-lg font-semibold">.net</span>
         </Link>
         <nav className="flex flex-wrap gap-1">
           {tabs.map((t) => {
