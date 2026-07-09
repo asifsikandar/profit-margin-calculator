@@ -14,6 +14,7 @@ import { Route as MathRouteImport } from './routes/math'
 import { Route as FitnessAndHealthRouteImport } from './routes/fitness-and-health'
 import { Route as FinancialRouteImport } from './routes/financial'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FinancialIndexRouteImport } from './routes/financial.index'
 import { Route as PageSlugRouteImport } from './routes/page.$slug'
 import { Route as CalculatorCategorySlugRouteImport } from './routes/calculator.$category.$slug'
 
@@ -42,6 +43,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FinancialIndexRoute = FinancialIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => FinancialRoute,
+} as any)
 const PageSlugRoute = PageSlugRouteImport.update({
   id: '/page/$slug',
   path: '/page/$slug',
@@ -55,30 +61,32 @@ const CalculatorCategorySlugRoute = CalculatorCategorySlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/financial': typeof FinancialRoute
+  '/financial': typeof FinancialRouteWithChildren
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
   '/page/$slug': typeof PageSlugRoute
+  '/financial/': typeof FinancialIndexRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/financial': typeof FinancialRoute
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
   '/page/$slug': typeof PageSlugRoute
+  '/financial': typeof FinancialIndexRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/financial': typeof FinancialRoute
+  '/financial': typeof FinancialRouteWithChildren
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
   '/page/$slug': typeof PageSlugRoute
+  '/financial/': typeof FinancialIndexRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
 export interface FileRouteTypes {
@@ -90,15 +98,16 @@ export interface FileRouteTypes {
     | '/math'
     | '/other'
     | '/page/$slug'
+    | '/financial/'
     | '/calculator/$category/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/financial'
     | '/fitness-and-health'
     | '/math'
     | '/other'
     | '/page/$slug'
+    | '/financial'
     | '/calculator/$category/$slug'
   id:
     | '__root__'
@@ -108,12 +117,13 @@ export interface FileRouteTypes {
     | '/math'
     | '/other'
     | '/page/$slug'
+    | '/financial/'
     | '/calculator/$category/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  FinancialRoute: typeof FinancialRoute
+  FinancialRoute: typeof FinancialRouteWithChildren
   FitnessAndHealthRoute: typeof FitnessAndHealthRoute
   MathRoute: typeof MathRoute
   OtherRoute: typeof OtherRoute
@@ -158,6 +168,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/financial/': {
+      id: '/financial/'
+      path: '/'
+      fullPath: '/financial/'
+      preLoaderRoute: typeof FinancialIndexRouteImport
+      parentRoute: typeof FinancialRoute
+    }
     '/page/$slug': {
       id: '/page/$slug'
       path: '/page/$slug'
@@ -175,9 +192,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface FinancialRouteChildren {
+  FinancialIndexRoute: typeof FinancialIndexRoute
+}
+
+const FinancialRouteChildren: FinancialRouteChildren = {
+  FinancialIndexRoute: FinancialIndexRoute,
+}
+
+const FinancialRouteWithChildren = FinancialRoute._addFileChildren(
+  FinancialRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  FinancialRoute: FinancialRoute,
+  FinancialRoute: FinancialRouteWithChildren,
   FitnessAndHealthRoute: FitnessAndHealthRoute,
   MathRoute: MathRoute,
   OtherRoute: OtherRoute,

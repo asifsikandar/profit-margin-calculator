@@ -7,8 +7,13 @@ export function slugify(name: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+export function financialSlug(name: string): string {
+  // Every financial calculator route ends with "-calculator"
+  const s = slugify(name);
+  return s.endsWith("-calculator") ? s : `${s}-calculator`;
+}
+
 export function calcHref(category: string, name: string): string {
-  // Homepage handles Margin (Financial); everything else uses placeholder route.
-  if (category === "financial" && name.toLowerCase() === "margin") return "/";
+  if (category === "financial") return `/financial/${financialSlug(name)}`;
   return `/calculator/${category}/${slugify(name)}`;
 }
