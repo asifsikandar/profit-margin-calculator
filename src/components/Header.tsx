@@ -1,4 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { Calculator } from "lucide-react";
+
 
 const tabs = [
   { label: "FINANCIAL", to: "/financial" },
@@ -12,9 +14,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-navy text-white shadow">
       <div className="mx-auto flex max-w-6xl flex-col items-stretch gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-        <Link to="/" className="text-2xl font-extrabold tracking-tight text-white hover:no-underline">
-          <span className="text-white">Profit</span>
-          <span className="text-lime">Calc</span>
+        <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-white hover:no-underline">
+          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-lime text-white shadow">
+            <Calculator className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <span className="text-white">PROFIT MARGIN</span>
+          <span className="text-lime">CALCULATOR</span>
         </Link>
         <nav className="flex flex-wrap gap-1">
           {tabs.map((t) => {
