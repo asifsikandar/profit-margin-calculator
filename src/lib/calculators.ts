@@ -1,5 +1,6 @@
 import type { CalcDef, CalcResult } from "./calc-framework";
-import { req, reqPos, reqNonNeg, fmt, money } from "./calc-framework";
+import { num, req, reqPos, reqNonNeg, fmt, money } from "./calc-framework";
+
 
 
 // ============================================================
