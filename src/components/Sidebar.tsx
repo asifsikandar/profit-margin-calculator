@@ -1,4 +1,5 @@
-import { Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { calcHref } from "@/lib/slug";
 
 type CategoryKey = "financial" | "fitness-and-health" | "math" | "other";
@@ -10,17 +11,23 @@ interface SidebarProps {
 }
 
 export function Sidebar({ categoryKey, categoryLabel, quickLinks }: SidebarProps) {
+  const navigate = useNavigate();
+  const [q, setQ] = useState("");
   return (
     <aside className="w-full space-y-4 lg:w-64 lg:shrink-0">
-      {/* Search */}
       <form
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (q.trim()) navigate({ to: "/search", search: { q: q.trim() } });
+        }}
         className="flex overflow-hidden rounded border border-border bg-white"
       >
         <input
           type="search"
           aria-label="Search calculators"
           placeholder="Search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
           className="min-w-0 flex-1 px-3 py-2 text-sm outline-none"
         />
         <button
@@ -31,7 +38,6 @@ export function Sidebar({ categoryKey, categoryLabel, quickLinks }: SidebarProps
         </button>
       </form>
 
-      {/* Quick-link card */}
       <div className="overflow-hidden rounded border border-border bg-white">
         <div className="bg-navy px-3 py-2 text-sm font-bold uppercase tracking-wide text-white">
           {categoryLabel}
@@ -52,7 +58,6 @@ export function Sidebar({ categoryKey, categoryLabel, quickLinks }: SidebarProps
         </div>
       </div>
 
-      {/* Bottom category row */}
       <div className="rounded border border-border bg-white p-3 text-xs">
         <div className="flex flex-wrap gap-x-2 gap-y-1">
           <Link to="/financial">Financial</Link>
