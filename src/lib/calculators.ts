@@ -3322,8 +3322,7 @@ function formatResistance(v: number): string {
   return fmt(v, 3) + " Ω";
 }
 
-// need CalcResult type for periodCalc results array
-type CalcResult = { label: string; value: string; emphasize?: boolean };
+
 
 
 // ============================================================
