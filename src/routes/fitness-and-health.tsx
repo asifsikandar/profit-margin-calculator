@@ -29,7 +29,7 @@ function Page() {
           { title: "Pregnancy", items: ["Pregnancy","Pregnancy Weight Gain","Due Date","Ovulation","Period"] },
           { title: "Other", items: ["Macro","Carbohydrate","Protein","Fat Intake","TDEE","GFR","Body Type","Body Surface Area","BAC"] },
         ]}
-        quickLinks={["BMI","Calorie","Body Fat","BMR","Macro","Ideal Weight","Pregnancy","Pregnancy Weight Gain","Pregnancy Conception","Due Date","Pace"]}
+        quickLinks={["BMI","Calorie","Body Fat","BMR","Macro","Ideal Weight","Pregnancy","Pregnancy Weight Gain","Due Date","Pace"]}
       />
     </Layout>
   );
