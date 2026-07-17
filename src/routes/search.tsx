@@ -1,13 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { z } from "zod";
-import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { Layout } from "@/components/Layout";
 import { searchCalculators } from "@/lib/calc-index";
 
-const schema = z.object({ q: fallback(z.string(), "").default("") });
-
 export const Route = createFileRoute("/search")({
-  validateSearch: zodValidator(schema),
+  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" ? s.q : "" }),
   head: () => ({ meta: [{ title: "Search Calculators | ProfitCalc" }, { name: "robots", content: "noindex" }] }),
   component: SearchPage,
 });
@@ -22,7 +18,7 @@ function SearchPage() {
           <Link to="/">Home</Link> <span className="mx-1">/</span> Search
         </nav>
         <h1>Search Results</h1>
-        <form className="mt-3 flex max-w-md overflow-hidden rounded border border-border bg-white">
+        <form className="mt-3 flex max-w-md overflow-hidden rounded border border-border bg-white" method="get" action="/search">
           <input name="q" defaultValue={q} placeholder="Search" className="min-w-0 flex-1 px-3 py-2 text-sm outline-none" />
           <button className="bg-navy px-3 text-sm font-semibold text-white hover:bg-navy-light">Search</button>
         </form>

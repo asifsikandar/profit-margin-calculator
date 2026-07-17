@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as OtherRouteImport } from './routes/other'
 import { Route as MathRouteImport } from './routes/math'
 import { Route as FitnessAndHealthRouteImport } from './routes/fitness-and-health'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PageSlugRouteImport } from './routes/page.$slug'
 import { Route as CalculatorCategorySlugRouteImport } from './routes/calculator.$category.$slug'
 
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OtherRoute = OtherRouteImport.update({
   id: '/other',
   path: '/other',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
+  '/search': typeof SearchRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
+  '/search': typeof SearchRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
+  '/search': typeof SearchRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/fitness-and-health'
     | '/math'
     | '/other'
+    | '/search'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/fitness-and-health'
     | '/math'
     | '/other'
+    | '/search'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/fitness-and-health'
     | '/math'
     | '/other'
+    | '/search'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   fileRoutesById: FileRoutesById
@@ -117,12 +129,20 @@ export interface RootRouteChildren {
   FitnessAndHealthRoute: typeof FitnessAndHealthRoute
   MathRoute: typeof MathRoute
   OtherRoute: typeof OtherRoute
+  SearchRoute: typeof SearchRoute
   PageSlugRoute: typeof PageSlugRoute
   CalculatorCategorySlugRoute: typeof CalculatorCategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/other': {
       id: '/other'
       path: '/other'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   FitnessAndHealthRoute: FitnessAndHealthRoute,
   MathRoute: MathRoute,
   OtherRoute: OtherRoute,
+  SearchRoute: SearchRoute,
   PageSlugRoute: PageSlugRoute,
   CalculatorCategorySlugRoute: CalculatorCategorySlugRoute,
 }
