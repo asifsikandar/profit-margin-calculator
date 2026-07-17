@@ -26,7 +26,7 @@ function Page() {
         linkListLayout="grouped-2col"
         groups={[
           { title: "Fitness", items: ["BMI","Calorie","Body Fat","BMR","Ideal Weight","Pace","Army Body Fat","Lean Body Mass","Healthy Weight","Calories Burned","One Rep Max","Target Heart Rate"] },
-          { title: "Pregnancy", items: ["Pregnancy","Pregnancy Weight Gain","Pregnancy Conception","Due Date","Ovulation","Conception","Period"] },
+          { title: "Pregnancy", items: ["Pregnancy","Pregnancy Weight Gain","Due Date","Ovulation","Period"] },
           { title: "Other", items: ["Macro","Carbohydrate","Protein","Fat Intake","TDEE","GFR","Body Type","Body Surface Area","BAC"] },
         ]}
         quickLinks={["BMI","Calorie","Body Fat","BMR","Macro","Ideal Weight","Pregnancy","Pregnancy Weight Gain","Pregnancy Conception","Due Date","Pace"]}
