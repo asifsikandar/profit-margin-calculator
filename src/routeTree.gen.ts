@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as OtherRouteImport } from './routes/other'
 import { Route as MathRouteImport } from './routes/math'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PageSlugRouteImport } from './routes/page.$slug'
 import { Route as CalculatorCategorySlugRouteImport } from './routes/calculator.$category.$slug'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
   '/search': typeof SearchRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
   '/search': typeof SearchRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
   '/search': typeof SearchRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/math'
     | '/other'
     | '/search'
+    | '/sitemap.xml'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/math'
     | '/other'
     | '/search'
+    | '/sitemap.xml'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/math'
     | '/other'
     | '/search'
+    | '/sitemap.xml'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   fileRoutesById: FileRoutesById
@@ -130,12 +142,20 @@ export interface RootRouteChildren {
   MathRoute: typeof MathRoute
   OtherRoute: typeof OtherRoute
   SearchRoute: typeof SearchRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PageSlugRoute: typeof PageSlugRoute
   CalculatorCategorySlugRoute: typeof CalculatorCategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   MathRoute: MathRoute,
   OtherRoute: OtherRoute,
   SearchRoute: SearchRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   PageSlugRoute: PageSlugRoute,
   CalculatorCategorySlugRoute: CalculatorCategorySlugRoute,
 }

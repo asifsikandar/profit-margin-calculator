@@ -88,17 +88,17 @@ export function CalculatorPage({
   return (
     <Layout>
       <div className="mx-auto max-w-4xl px-4 py-6">
-        <nav className="mb-2 text-xs text-muted-foreground">
-          <Link to="/">Home</Link>
-          <span className="mx-1">/</span>
-          <Link to={catPath}>{catLabel}</Link>
-          <span className="mx-1">/</span>
-          {def.title}
+        <nav aria-label="Breadcrumb" className="sr-only">
+          <ol>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to={catPath}>{catLabel}</Link></li>
+            <li>{def.title}</li>
+          </ol>
         </nav>
-        <h1>{def.title}</h1>
-        {def.description && <p className="mt-1 text-sm text-muted-foreground">{def.description}</p>}
 
-        <section className="mt-4 rounded border border-border bg-white p-4">
+        <section className="rounded border border-border bg-white p-4">
+          <h2 className="mt-0">{def.title}</h2>
+
           <div className="space-y-3">
             {def.fields.map((f) => (
               <FieldRow key={f.name} label={f.label + (f.suffix ? ` (${f.suffix})` : "")}>
@@ -158,6 +158,14 @@ export function CalculatorPage({
             </div>
           )}
         </section>
+
+        <section className="mt-4 rounded border border-border bg-white p-4">
+          <h1>{def.title}</h1>
+          {def.description && (
+            <p className="mt-1 text-sm text-muted-foreground">{def.description}</p>
+          )}
+        </section>
+
 
         {def.formula && (
           <section className="mt-4 rounded border border-border bg-white p-4 text-sm">

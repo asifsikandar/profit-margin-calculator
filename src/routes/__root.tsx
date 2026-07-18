@@ -52,11 +52,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#0a3d62" },
+      { name: "format-detection", content: "telephone=no" },
       { title: "ProfitCalc — Free Online Calculators for Finance, Health, Math & More" },
       { name: "description", content: "ProfitCalc offers free, accurate online calculators for margin, finance, health, math and everyday tasks." },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
       { property: "og:site_name", content: "ProfitCalc" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@profitcalc" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -65,6 +70,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
