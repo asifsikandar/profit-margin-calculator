@@ -159,6 +159,14 @@ export function CalculatorPage({
           )}
         </section>
 
+        <section className="mt-4 rounded border border-border bg-white p-4">
+          <h1>{def.title}</h1>
+          {def.description && (
+            <p className="mt-1 text-sm text-muted-foreground">{def.description}</p>
+          )}
+        </section>
+
+
         {def.formula && (
           <section className="mt-4 rounded border border-border bg-white p-4 text-sm">
             <h3 className="mt-0">Formula</h3>
