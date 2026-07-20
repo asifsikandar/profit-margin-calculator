@@ -16,10 +16,11 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/math", priority: "0.8", changefreq: "weekly" },
           { path: "/other", priority: "0.8", changefreq: "weekly" },
           { path: "/search", priority: "0.3", changefreq: "monthly" },
-          { path: "/page/about-us", priority: "0.4", changefreq: "yearly" },
-          { path: "/page/sitemap", priority: "0.4", changefreq: "yearly" },
-          { path: "/page/terms-of-use", priority: "0.3", changefreq: "yearly" },
-          { path: "/page/privacy-policy", priority: "0.3", changefreq: "yearly" },
+          { path: "/blog", priority: "0.6", changefreq: "weekly" },
+          { path: "/faq", priority: "0.5", changefreq: "monthly" },
+          { path: "/contact", priority: "0.4", changefreq: "yearly" },
+          { path: "/terms", priority: "0.3", changefreq: "yearly" },
+          { path: "/privacy-policy", priority: "0.3", changefreq: "yearly" },
         ];
 
         const calcPaths = ALL_CALCULATORS.map((c) => ({
