@@ -73,26 +73,46 @@ const FINANCIAL_QUICK = [
 function Index() {
   return (
     <Layout>
-      <div className="mx-auto max-w-6xl px-4 py-6">
-        {/* SEO breadcrumb — visually hidden but present in DOM */}
-        <nav aria-label="Breadcrumb" className="sr-only">
-          <ol>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/financial">Financial</Link></li>
-            <li>Margin Calculator</li>
-          </ol>
-        </nav>
+      {/* Hero */}
+      <section className="bg-hero-gradient text-white">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
+          {/* SEO breadcrumb — visually hidden but present in DOM */}
+          <nav aria-label="Breadcrumb" className="sr-only">
+            <ol>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/financial">Financial</Link></li>
+              <li>Margin Calculator</li>
+            </ol>
+          </nav>
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Free · Instant · No Signup</p>
+          <h1 className="max-w-3xl text-white" style={{ color: "white" }}>
+            Margin, mortgage, health and math — calculated properly.
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
+            ProfitCalc bundles hundreds of accurate calculators behind a fast, ad-light interface. Start with the three below, or jump into a category.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link to="/financial" className="rounded-lg bg-lime px-5 py-2.5 text-sm font-semibold text-navy-deeper shadow hover:bg-lime-dark hover:no-underline hover:text-navy-deeper">
+              Explore financial tools
+            </Link>
+            <Link to="/faq" className="rounded-lg border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 hover:no-underline">
+              How it works
+            </Link>
+          </div>
+        </div>
+      </section>
 
-        <div className="flex flex-col gap-6 lg:flex-row">
+      <div className="mx-auto max-w-7xl px-4 py-10">
+        <div className="flex flex-col gap-8 lg:flex-row">
           <div className="flex-1 space-y-6">
             {/* Jump-to nav for the three calculators on this page */}
             <nav
               aria-label="On this page"
-              className="rounded border border-border bg-white p-3 text-sm"
+              className="surface-card flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 text-sm"
             >
-              <span className="mr-2 font-semibold text-navy">Jump to:</span>
-              <a href="#profit-margin" className="mr-3 text-linkblue">Profit Margin</a>
-              <a href="#stock-margin" className="mr-3 text-linkblue">Stock Trading Margin</a>
+              <span className="font-semibold text-navy">Jump to:</span>
+              <a href="#profit-margin" className="text-linkblue">Profit Margin</a>
+              <a href="#stock-margin" className="text-linkblue">Stock Trading Margin</a>
               <a href="#currency-margin" className="text-linkblue">Currency Exchange Margin</a>
             </nav>
 
@@ -106,13 +126,8 @@ function Index() {
               <CurrencyMarginCalculator />
             </section>
 
-            <article className="rounded border border-border bg-white p-4 text-sm leading-relaxed">
-              <h1>Margin Calculator</h1>
-              <p className="text-muted-foreground">
-                Use our free online margin calculators to work out profit margin, stock trading margin and currency exchange margin — no signup, no ads that block your view.
-              </p>
-
-              <h2 className="mt-4">Understanding Margin</h2>
+            <article className="surface-card p-6 text-sm leading-relaxed sm:p-8">
+              <h2 className="mt-0">Understanding Margin</h2>
               <p>Margin is a general term used in business and finance to describe the gap between two related numbers — most often the difference between what something costs and what it sells for. Depending on the context, margin can describe profitability, capital requirements for leveraged trading, or the spread a broker keeps on a foreign-exchange transaction.</p>
 
               <h3>Profit margin explained</h3>

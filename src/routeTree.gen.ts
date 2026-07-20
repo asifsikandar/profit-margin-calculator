@@ -9,16 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as OtherRouteImport } from './routes/other'
 import { Route as MathRouteImport } from './routes/math'
 import { Route as FitnessAndHealthRouteImport } from './routes/fitness-and-health'
 import { Route as FinancialRouteImport } from './routes/financial'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PageSlugRouteImport } from './routes/page.$slug'
 import { Route as CalculatorCategorySlugRouteImport } from './routes/calculator.$category.$slug'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -27,6 +37,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OtherRoute = OtherRouteImport.update({
@@ -49,6 +64,21 @@ const FinancialRoute = FinancialRouteImport.update({
   path: '/financial',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -67,35 +97,50 @@ const CalculatorCategorySlugRoute = CalculatorCategorySlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/financial': typeof FinancialRoute
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/financial': typeof FinancialRoute
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/financial': typeof FinancialRoute
   '/fitness-and-health': typeof FitnessAndHealthRoute
   '/math': typeof MathRoute
   '/other': typeof OtherRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/page/$slug': typeof PageSlugRoute
   '/calculator/$category/$slug': typeof CalculatorCategorySlugRoute
 }
@@ -103,52 +148,79 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/blog'
+    | '/contact'
+    | '/faq'
     | '/financial'
     | '/fitness-and-health'
     | '/math'
     | '/other'
+    | '/privacy-policy'
     | '/search'
     | '/sitemap.xml'
+    | '/terms'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/blog'
+    | '/contact'
+    | '/faq'
     | '/financial'
     | '/fitness-and-health'
     | '/math'
     | '/other'
+    | '/privacy-policy'
     | '/search'
     | '/sitemap.xml'
+    | '/terms'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   id:
     | '__root__'
     | '/'
+    | '/blog'
+    | '/contact'
+    | '/faq'
     | '/financial'
     | '/fitness-and-health'
     | '/math'
     | '/other'
+    | '/privacy-policy'
     | '/search'
     | '/sitemap.xml'
+    | '/terms'
     | '/page/$slug'
     | '/calculator/$category/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRoute
+  ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
   FinancialRoute: typeof FinancialRoute
   FitnessAndHealthRoute: typeof FitnessAndHealthRoute
   MathRoute: typeof MathRoute
   OtherRoute: typeof OtherRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SearchRoute: typeof SearchRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
   PageSlugRoute: typeof PageSlugRoute
   CalculatorCategorySlugRoute: typeof CalculatorCategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -161,6 +233,13 @@ declare module '@tanstack/react-router' {
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/other': {
@@ -191,6 +270,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FinancialRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -217,12 +317,17 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogRoute: BlogRoute,
+  ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
   FinancialRoute: FinancialRoute,
   FitnessAndHealthRoute: FitnessAndHealthRoute,
   MathRoute: MathRoute,
   OtherRoute: OtherRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   SearchRoute: SearchRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
   PageSlugRoute: PageSlugRoute,
   CalculatorCategorySlugRoute: CalculatorCategorySlugRoute,
 }
