@@ -22,7 +22,7 @@ export function PageShell({ eyebrow, title, description, breadcrumb, children }:
                 {breadcrumb.map((b, i) => (
                   <li key={i} className="flex items-center gap-1.5">
                     <span aria-hidden>/</span>
-                    {b.to ? <Link to={b.to} className="text-white/60 hover:text-white">{b.label}</Link> : <span className="text-white">{b.label}</span>}
+                    {b.to ? <a href={b.to} className="text-white/60 hover:text-white">{b.label}</a> : <span className="text-white">{b.label}</span>}
                   </li>
                 ))}
               </ol>
