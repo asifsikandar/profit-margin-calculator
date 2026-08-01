@@ -1891,10 +1891,10 @@ const apr: CalcDef = {
   },
 };
 
-const fhaLoan: CalcDef = { ...mortgage, title: "FHA Loan Calculator", description: "Estimate FHA mortgage payment (P&I only)." };
-const vaMortgage: CalcDef = { ...mortgage, title: "VA Mortgage Calculator", description: "Estimate VA loan monthly payment (P&I)." };
-const homeEquityLoan: CalcDef = { ...loan, title: "Home Equity Loan Calculator" };
-const heloc: CalcDef = { ...loan, title: "HELOC Calculator", description: "Estimate HELOC interest-only or amortizing payment." };
+const fhaLoan: CalcDef = { ...mortgage, title: "FHA Loan Calculator", description: "Estimate the principal and interest payment on an FHA mortgage. Mortgage insurance premiums are not included." };
+const vaMortgage: CalcDef = { ...mortgage, title: "VA Mortgage Calculator", description: "Estimate the principal and interest payment on a VA loan. The VA funding fee is not included." };
+const homeEquityLoan: CalcDef = { ...loan, title: "Home Equity Loan Calculator", description: "Estimate the monthly payment on a fixed-rate home equity loan (second mortgage)." };
+const heloc: CalcDef = { ...loan, title: "HELOC Calculator", description: "Estimate the monthly payment on a HELOC balance repaid over a fixed term at a fixed rate." };
 
 const rentVsBuy: CalcDef = {
   title: "Rent vs Buy Calculator",
