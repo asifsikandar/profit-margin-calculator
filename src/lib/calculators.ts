@@ -2007,9 +2007,9 @@ const retirement: CalcDef = {
   },
 };
 
-const k401: CalcDef = { ...retirement, title: "401K Calculator", description: "Project 401(k) balance at retirement." };
-const rothIRA: CalcDef = { ...retirement, title: "Roth IRA Calculator" };
-const ira: CalcDef = { ...retirement, title: "IRA Calculator" };
+const k401: CalcDef = { ...retirement, title: "401K Calculator", description: "Project your 401(k) balance at retirement from your current balance and monthly contributions." };
+const rothIRA: CalcDef = { ...retirement, title: "Roth IRA Calculator", description: "Project the tax-free balance of a Roth IRA at retirement from contributions and expected return." };
+const ira: CalcDef = { ...retirement, title: "IRA Calculator", description: "Project the balance of a traditional IRA at retirement from contributions and expected return." };
 const pension: CalcDef = {
   title: "Pension Calculator",
   description: "Estimate annual pension using: years × final salary × multiplier.",
