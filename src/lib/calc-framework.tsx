@@ -84,6 +84,8 @@ export function CalculatorPage({
       setError(e instanceof Error ? e.message : "Calculation failed.");
     }
   }
+  runRef.current = run;
+
 
   function clear() {
     setValues(initial);
