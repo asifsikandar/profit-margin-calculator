@@ -62,11 +62,11 @@ const loan: CalcDef = {
   },
 };
 
-const autoLoan: CalcDef = { ...loan, title: "Auto Loan Calculator", description: "Estimate car loan monthly payments." };
-const personalLoan: CalcDef = { ...loan, title: "Personal Loan Calculator" };
-const businessLoan: CalcDef = { ...loan, title: "Business Loan Calculator" };
-const studentLoan: CalcDef = { ...loan, title: "Student Loan Calculator" };
-const boatLoan: CalcDef = { ...loan, title: "Boat Loan Calculator" };
+const autoLoan: CalcDef = { ...loan, title: "Auto Loan Calculator", description: "Estimate the monthly payment and total interest on a car loan." };
+const personalLoan: CalcDef = { ...loan, title: "Personal Loan Calculator", description: "Estimate the monthly payment and total cost of a fixed-rate personal loan." };
+const businessLoan: CalcDef = { ...loan, title: "Business Loan Calculator", description: "Estimate the monthly payment and total cost of a fixed-rate business loan." };
+const studentLoan: CalcDef = { ...loan, title: "Student Loan Calculator", description: "Estimate the monthly payment and total interest on a student loan in repayment." };
+const boatLoan: CalcDef = { ...loan, title: "Boat Loan Calculator", description: "Estimate the monthly payment and total cost of a boat loan." };
 
 const compoundInterest: CalcDef = {
   title: "Compound Interest Calculator",
