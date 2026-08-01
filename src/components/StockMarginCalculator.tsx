@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CalcButton, FieldRow, ResultPanel } from "./ResultPanel";
+import { useCurrency } from "@/lib/currency";
 
 export function StockMarginCalculator() {
   const [price, setPrice] = useState("");
@@ -7,6 +8,8 @@ export function StockMarginCalculator() {
   const [req, setReq] = useState("");
   const [result, setResult] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const cur = useCurrency();
+  const sym = cur.symbol.trim();
 
   function calc() {
     setError(null);
@@ -35,7 +38,7 @@ export function StockMarginCalculator() {
     <section className="surface-card p-5 sm:p-6">
       <h2 className="mt-0">Stock Trading Margin Calculator</h2>
       <div className="space-y-3">
-        <FieldRow label="Stock price ($)"><input inputMode="decimal" className={cls} value={price} onChange={(e) => setPrice(e.target.value)} /></FieldRow>
+        <FieldRow label={`Stock price (${sym})`}><input inputMode="decimal" className={cls} value={price} onChange={(e) => setPrice(e.target.value)} /></FieldRow>
         <FieldRow label="Number of shares"><input inputMode="numeric" className={cls} value={shares} onChange={(e) => setShares(e.target.value)} /></FieldRow>
         <FieldRow label="Margin requirement (%)"><input inputMode="decimal" className={cls} value={req} onChange={(e) => setReq(e.target.value)} /></FieldRow>
       </div>
@@ -48,7 +51,7 @@ export function StockMarginCalculator() {
         <div className="mt-4">
           <ResultPanel title="Amount Required">
             <div className="text-xl font-bold">
-              ${result.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              {sym}{result.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </div>
           </ResultPanel>
         </div>
