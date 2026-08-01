@@ -2277,8 +2277,8 @@ const creditCard: CalcDef = {
   },
 };
 
-const creditCardsPayoff: CalcDef = { ...creditCard, title: "Credit Cards Payoff Calculator" };
-const debtPayoff: CalcDef = { ...creditCard, title: "Debt Payoff Calculator" };
+const creditCardsPayoff: CalcDef = { ...creditCard, title: "Credit Cards Payoff Calculator", description: "See how long a card balance takes to clear, and the interest it costs, at a fixed monthly payment." };
+const debtPayoff: CalcDef = { ...creditCard, title: "Debt Payoff Calculator", description: "See how long any interest-bearing debt takes to clear, and the total interest, at a fixed monthly payment." };
 
 const debtConsolidation: CalcDef = {
   title: "Debt Consolidation Calculator",
