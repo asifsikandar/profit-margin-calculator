@@ -460,7 +460,7 @@ const tdee: CalcDef = {
   },
 };
 
-const calorie: CalcDef = { ...tdee, title: "Calorie Calculator", description: "Daily calorie needs based on activity." };
+const calorie: CalcDef = { ...tdee, title: "Calorie Calculator", description: "Estimate daily calories to maintain, lose or gain weight based on your activity level." };
 
 const bodyFat: CalcDef = {
   title: "Body Fat Calculator",
