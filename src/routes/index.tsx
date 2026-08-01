@@ -70,42 +70,25 @@ const FINANCIAL_QUICK = [
   "401K","Interest Rate","Sales Tax",
 ];
 
-function Index() {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="bg-hero-gradient text-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
-          {/* SEO breadcrumb — visually hidden but present in DOM */}
-          <nav aria-label="Breadcrumb" className="sr-only">
-            <ol>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/financial">Financial</Link></li>
-              <li>Margin Calculator</li>
-            </ol>
-          </nav>
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Free · Instant · No Signup</p>
-          <h1 className="max-w-3xl text-white" style={{ color: "white" }}>
-            Margin, mortgage, health and math — calculated properly.
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-            ProfitCalc bundles hundreds of accurate calculators behind a fast, ad-light interface. Start with the three below, or jump into a category.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link to="/financial" className="rounded-lg bg-lime px-5 py-2.5 text-sm font-semibold text-navy-deeper shadow hover:bg-lime-dark hover:no-underline hover:text-navy-deeper">
-              Explore financial tools
-            </Link>
-            <Link to="/faq" className="rounded-lg border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 hover:no-underline">
-              How it works
-            </Link>
-          </div>
-        </div>
-      </section>
+      <div className="mx-auto max-w-7xl px-4 py-6">
+        {/* SEO breadcrumb — visually hidden but present in DOM */}
+        <nav aria-label="Breadcrumb" className="sr-only">
+          <ol>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/financial">Financial</Link></li>
+            <li>Margin Calculator</li>
+          </ol>
+        </nav>
 
-      <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="flex flex-col gap-8 lg:flex-row">
           <div className="flex-1 space-y-6">
-            {/* Jump-to nav for the three calculators on this page */}
+            <section id="profit-margin" aria-labelledby="pm-heading" className="scroll-mt-20">
+              <ProfitMarginCalculator />
+            </section>
+
+            {/* Jump-to nav for the other calculators on this page */}
             <nav
               aria-label="On this page"
               className="surface-card flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 text-sm"
@@ -116,15 +99,29 @@ function Index() {
               <a href="#currency-margin" className="text-linkblue">Currency Exchange Margin</a>
             </nav>
 
-            <section id="profit-margin" aria-labelledby="pm-heading" className="scroll-mt-24">
-              <ProfitMarginCalculator />
-            </section>
-            <section id="stock-margin" aria-labelledby="sm-heading" className="scroll-mt-24">
+            <section id="stock-margin" aria-labelledby="sm-heading" className="scroll-mt-20">
               <StockMarginCalculator />
             </section>
-            <section id="currency-margin" aria-labelledby="cm-heading" className="scroll-mt-24">
+            <section id="currency-margin" aria-labelledby="cm-heading" className="scroll-mt-20">
               <CurrencyMarginCalculator />
             </section>
+
+            <section className="surface-card p-6 sm:p-8">
+              <h1 className="mt-0">Free Profit Margin, Stock Margin &amp; Currency Margin Calculators</h1>
+              <p className="mt-2 text-sm leading-relaxed text-slate">
+                ProfitCalc bundles hundreds of accurate calculators behind a fast, ad-light interface.
+                Work in your own currency — US dollars, Pakistani rupees, Indian rupees and more.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link to="/financial" className="rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-white hover:bg-navy-light hover:no-underline hover:text-white">
+                  Explore financial tools
+                </Link>
+                <Link to="/faq" className="rounded-lg border border-hairline bg-white px-4 py-2 text-sm font-semibold text-navy hover:bg-graybg hover:no-underline">
+                  How it works
+                </Link>
+              </div>
+            </section>
+
 
             <article className="surface-card p-6 text-sm leading-relaxed sm:p-8">
               <h2 className="mt-0">Understanding Margin</h2>
