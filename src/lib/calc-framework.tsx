@@ -94,7 +94,7 @@ export function CalculatorPage({
   }
 
   const inputCls =
-    "w-full max-w-xs rounded border border-border bg-white px-2 py-1 text-sm outline-none focus:border-navy-light";
+    "w-full max-w-xs rounded-lg border border-hairline bg-white px-3 py-2 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
   const catLabel = CATEGORY_LABEL[category] ?? "Calculators";
   const catPath = CATEGORY_PATH[category] ?? "/";
 
@@ -109,12 +109,12 @@ export function CalculatorPage({
           </ol>
         </nav>
 
-        <section className="rounded border border-border bg-white p-4">
+        <section className="surface-card p-5">
           <h2 className="mt-0">{def.title}</h2>
 
           <div className="space-y-3">
             {def.fields.map((f) => (
-              <FieldRow key={f.name} label={f.label + (f.suffix ? ` (${f.suffix})` : "")}>
+              <FieldRow key={f.name} label={f.label + (f.suffix ? ` (${f.suffix === "$" ? currency.symbol.trim() : f.suffix})` : "")}>
                 {f.type === "select" ? (
                   <select
                     className={inputCls}
@@ -172,7 +172,7 @@ export function CalculatorPage({
           )}
         </section>
 
-        <section className="mt-4 rounded border border-border bg-white p-4">
+        <section className="mt-4 surface-card p-5">
           <h1>{def.title}</h1>
           {def.description && (
             <p className="mt-1 text-sm text-muted-foreground">{def.description}</p>
@@ -181,14 +181,14 @@ export function CalculatorPage({
 
 
         {def.formula && (
-          <section className="mt-4 rounded border border-border bg-white p-4 text-sm">
+          <section className="mt-4 surface-card p-5 text-sm">
             <h3 className="mt-0">Formula</h3>
             <pre className="whitespace-pre-wrap font-mono text-xs">{def.formula}</pre>
           </section>
         )}
 
         {def.notes && (
-          <section className="mt-4 rounded border border-border bg-white p-4 text-sm">
+          <section className="mt-4 surface-card p-5 text-sm">
             {def.notes}
           </section>
         )}
@@ -227,5 +227,5 @@ export function fmt(n: number, digits = 2): string {
 }
 
 export function money(n: number): string {
-  return "$" + fmt(n, 2);
+  return currencySymbol() + fmt(n, 2);
 }

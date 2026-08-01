@@ -91,10 +91,10 @@ export function ProfitMarginCalculator() {
   }
 
   const inputCls =
-    "w-full max-w-xs rounded border border-border bg-white px-2 py-1 text-sm outline-none focus:border-navy-light";
+    "w-full max-w-xs rounded-lg border border-hairline bg-white px-3 py-2 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
 
   return (
-    <section className="rounded border border-border bg-white p-4">
+    <section className="surface-card p-5 sm:p-6">
       <h2 className="mt-0">Profit Margin Calculator</h2>
       <p className="mb-3 text-sm text-muted-foreground">
         Fill in any two fields and click Calculate to compute the others.
