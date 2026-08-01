@@ -2230,21 +2230,22 @@ const estateTax: CalcDef = {
 // OTHER FINANCIAL
 // ============================================================
 
-const paymentCalc: CalcDef = { ...loan, title: "Payment Calculator" };
+const paymentCalc: CalcDef = { ...loan, title: "Payment Calculator", description: "Work out the fixed monthly payment on any amount borrowed over a set term." };
 
 const currencyCalc: CalcDef = {
   title: "Currency Calculator",
-  description: "Convert between currencies with a manual exchange rate.",
+  description: "Convert an amount between two currencies using a rate you enter.",
   fields: [
-    { name: "amount", label: "Amount", default: "100" },
-    { name: "rate", label: "Exchange rate (to → from)", default: "1.08" },
+    { name: "amount", label: "Amount to convert", default: "100" },
+    { name: "rate", label: "Exchange rate", default: "1.08", help: "How many units of the target currency 1 unit of your source currency buys." },
   ],
   compute: (v) => {
     const a = req(v.amount, "Amount");
-    const r = reqPos(v.rate, "Rate");
+    const r = reqPos(v.rate, "Exchange rate");
     return [
       { label: "Converted amount", value: fmt(a * r, 4), emphasize: true },
-      { label: "Reverse", value: fmt(a / r, 4) },
+      { label: "Inverse rate", value: fmt(1 / r, 6) },
+      { label: "Converted back", value: fmt(a, 4) },
     ];
   },
 };
