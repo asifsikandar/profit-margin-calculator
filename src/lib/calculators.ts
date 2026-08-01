@@ -62,11 +62,11 @@ const loan: CalcDef = {
   },
 };
 
-const autoLoan: CalcDef = { ...loan, title: "Auto Loan Calculator", description: "Estimate car loan monthly payments." };
-const personalLoan: CalcDef = { ...loan, title: "Personal Loan Calculator" };
-const businessLoan: CalcDef = { ...loan, title: "Business Loan Calculator" };
-const studentLoan: CalcDef = { ...loan, title: "Student Loan Calculator" };
-const boatLoan: CalcDef = { ...loan, title: "Boat Loan Calculator" };
+const autoLoan: CalcDef = { ...loan, title: "Auto Loan Calculator", description: "Estimate the monthly payment and total interest on a car loan." };
+const personalLoan: CalcDef = { ...loan, title: "Personal Loan Calculator", description: "Estimate the monthly payment and total cost of a fixed-rate personal loan." };
+const businessLoan: CalcDef = { ...loan, title: "Business Loan Calculator", description: "Estimate the monthly payment and total cost of a fixed-rate business loan." };
+const studentLoan: CalcDef = { ...loan, title: "Student Loan Calculator", description: "Estimate the monthly payment and total interest on a student loan in repayment." };
+const boatLoan: CalcDef = { ...loan, title: "Boat Loan Calculator", description: "Estimate the monthly payment and total cost of a boat loan." };
 
 const compoundInterest: CalcDef = {
   title: "Compound Interest Calculator",
@@ -198,7 +198,7 @@ const salesTax: CalcDef = {
     ];
   },
 };
-const vat: CalcDef = { ...salesTax, title: "VAT Calculator" };
+const vat: CalcDef = { ...salesTax, title: "VAT Calculator", description: "Add value added tax to a net price and see the tax amount and gross total." };
 
 const inflation: CalcDef = {
   title: "Inflation Calculator",
@@ -460,7 +460,7 @@ const tdee: CalcDef = {
   },
 };
 
-const calorie: CalcDef = { ...tdee, title: "Calorie Calculator", description: "Daily calorie needs based on activity." };
+const calorie: CalcDef = { ...tdee, title: "Calorie Calculator", description: "Estimate daily calories to maintain, lose or gain weight based on your activity level." };
 
 const bodyFat: CalcDef = {
   title: "Body Fat Calculator",
@@ -1049,7 +1049,7 @@ const rightTriangle: CalcDef = {
   },
 };
 
-const pythag: CalcDef = { ...rightTriangle, title: "Pythagorean Theorem Calculator" };
+const pythag: CalcDef = { ...rightTriangle, title: "Pythagorean Theorem Calculator", description: "Enter the two legs of a right triangle to find the hypotenuse (a² + b² = c²)." };
 
 const triangle: CalcDef = {
   title: "Triangle Calculator",
@@ -1891,10 +1891,10 @@ const apr: CalcDef = {
   },
 };
 
-const fhaLoan: CalcDef = { ...mortgage, title: "FHA Loan Calculator", description: "Estimate FHA mortgage payment (P&I only)." };
-const vaMortgage: CalcDef = { ...mortgage, title: "VA Mortgage Calculator", description: "Estimate VA loan monthly payment (P&I)." };
-const homeEquityLoan: CalcDef = { ...loan, title: "Home Equity Loan Calculator" };
-const heloc: CalcDef = { ...loan, title: "HELOC Calculator", description: "Estimate HELOC interest-only or amortizing payment." };
+const fhaLoan: CalcDef = { ...mortgage, title: "FHA Loan Calculator", description: "Estimate the principal and interest payment on an FHA mortgage. Mortgage insurance premiums are not included." };
+const vaMortgage: CalcDef = { ...mortgage, title: "VA Mortgage Calculator", description: "Estimate the principal and interest payment on a VA loan. The VA funding fee is not included." };
+const homeEquityLoan: CalcDef = { ...loan, title: "Home Equity Loan Calculator", description: "Estimate the monthly payment on a fixed-rate home equity loan (second mortgage)." };
+const heloc: CalcDef = { ...loan, title: "HELOC Calculator", description: "Estimate the monthly payment on a HELOC balance repaid over a fixed term at a fixed rate." };
 
 const rentVsBuy: CalcDef = {
   title: "Rent vs Buy Calculator",
@@ -2007,9 +2007,9 @@ const retirement: CalcDef = {
   },
 };
 
-const k401: CalcDef = { ...retirement, title: "401K Calculator", description: "Project 401(k) balance at retirement." };
-const rothIRA: CalcDef = { ...retirement, title: "Roth IRA Calculator" };
-const ira: CalcDef = { ...retirement, title: "IRA Calculator" };
+const k401: CalcDef = { ...retirement, title: "401K Calculator", description: "Project your 401(k) balance at retirement from your current balance and monthly contributions." };
+const rothIRA: CalcDef = { ...retirement, title: "Roth IRA Calculator", description: "Project the tax-free balance of a Roth IRA at retirement from contributions and expected return." };
+const ira: CalcDef = { ...retirement, title: "IRA Calculator", description: "Project the balance of a traditional IRA at retirement from contributions and expected return." };
 const pension: CalcDef = {
   title: "Pension Calculator",
   description: "Estimate annual pension using: years × final salary × multiplier.",
@@ -2230,21 +2230,22 @@ const estateTax: CalcDef = {
 // OTHER FINANCIAL
 // ============================================================
 
-const paymentCalc: CalcDef = { ...loan, title: "Payment Calculator" };
+const paymentCalc: CalcDef = { ...loan, title: "Payment Calculator", description: "Work out the fixed monthly payment on any amount borrowed over a set term." };
 
 const currencyCalc: CalcDef = {
   title: "Currency Calculator",
-  description: "Convert between currencies with a manual exchange rate.",
+  description: "Convert an amount between two currencies using a rate you enter.",
   fields: [
-    { name: "amount", label: "Amount", default: "100" },
-    { name: "rate", label: "Exchange rate (to → from)", default: "1.08" },
+    { name: "amount", label: "Amount to convert", default: "100" },
+    { name: "rate", label: "Exchange rate", default: "1.08", help: "How many units of the target currency 1 unit of your source currency buys." },
   ],
   compute: (v) => {
     const a = req(v.amount, "Amount");
-    const r = reqPos(v.rate, "Rate");
+    const r = reqPos(v.rate, "Exchange rate");
     return [
       { label: "Converted amount", value: fmt(a * r, 4), emphasize: true },
-      { label: "Reverse", value: fmt(a / r, 4) },
+      { label: "Inverse rate", value: fmt(1 / r, 6) },
+      { label: "Converted back", value: fmt(a, 4) },
     ];
   },
 };
@@ -2276,8 +2277,8 @@ const creditCard: CalcDef = {
   },
 };
 
-const creditCardsPayoff: CalcDef = { ...creditCard, title: "Credit Cards Payoff Calculator" };
-const debtPayoff: CalcDef = { ...creditCard, title: "Debt Payoff Calculator" };
+const creditCardsPayoff: CalcDef = { ...creditCard, title: "Credit Cards Payoff Calculator", description: "See how long a card balance takes to clear, and the interest it costs, at a fixed monthly payment." };
+const debtPayoff: CalcDef = { ...creditCard, title: "Debt Payoff Calculator", description: "See how long any interest-bearing debt takes to clear, and the total interest, at a fixed monthly payment." };
 
 const debtConsolidation: CalcDef = {
   title: "Debt Consolidation Calculator",
@@ -2343,7 +2344,7 @@ const depreciation: CalcDef = {
   },
 };
 
-const leaseCalc: CalcDef = { ...autoLease, title: "Lease Calculator" };
+const leaseCalc: CalcDef = { ...autoLease, title: "Lease Calculator", description: "Estimate a lease payment from the asset value, residual value, term and money factor." };
 
 const budget: CalcDef = {
   title: "Budget Calculator",
@@ -3006,7 +3007,25 @@ const mulch: CalcDef = {
   },
 };
 
-const gravel: CalcDef = { ...mulch, title: "Gravel Calculator" };
+const gravel: CalcDef = {
+  title: "Gravel Calculator",
+  description: "Work out how much gravel an area needs, in cubic yards and tons.",
+  fields: [
+    { name: "L", label: "Length", suffix: "ft", default: "20" },
+    { name: "W", label: "Width", suffix: "ft", default: "10" },
+    { name: "D", label: "Depth", suffix: "in", default: "3" },
+  ],
+  compute: (v) => {
+    const cf = reqPos(v.L, "Length") * reqPos(v.W, "Width") * (reqPos(v.D, "Depth") / 12);
+    const yd = cf / 27;
+    return [
+      { label: "Cubic yards", value: fmt(yd, 2) + " yd³", emphasize: true },
+      { label: "Cubic feet", value: fmt(cf, 2) + " ft³" },
+      { label: "Approx. weight", value: fmt(yd * 1.4, 2) + " US tons" },
+    ];
+  },
+  notes: "Weight assumes loose gravel at roughly 1.4 tons per cubic yard; ask your supplier for the exact density.",
+};
 
 // ============================================================
 // OTHER — MEASUREMENTS
