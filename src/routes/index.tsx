@@ -84,27 +84,27 @@ function Index() {
           </ol>
         </nav>
 
+        {/* Jump-to nav sits directly under the header */}
+        <nav
+          aria-label="On this page"
+          className="surface-card mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 text-sm"
+        >
+          <span className="font-semibold text-navy">Jump to:</span>
+          <a href="#profit-margin" className="text-linkblue">Profit Margin</a>
+          <a href="#stock-margin" className="text-linkblue">Stock Trading Margin</a>
+          <a href="#currency-margin" className="text-linkblue">Currency Exchange Margin</a>
+        </nav>
+
         <div className="flex flex-col gap-8 lg:flex-row">
           <div className="flex-1 space-y-6">
-            <section id="profit-margin" aria-labelledby="pm-heading" className="scroll-mt-20">
+            <section id="profit-margin" aria-labelledby="pm-heading" className="scroll-mt-24">
               <ProfitMarginCalculator />
             </section>
 
-            {/* Jump-to nav for the other calculators on this page */}
-            <nav
-              aria-label="On this page"
-              className="surface-card flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 text-sm"
-            >
-              <span className="font-semibold text-navy">Jump to:</span>
-              <a href="#profit-margin" className="text-linkblue">Profit Margin</a>
-              <a href="#stock-margin" className="text-linkblue">Stock Trading Margin</a>
-              <a href="#currency-margin" className="text-linkblue">Currency Exchange Margin</a>
-            </nav>
-
-            <section id="stock-margin" aria-labelledby="sm-heading" className="scroll-mt-20">
+            <section id="stock-margin" aria-labelledby="sm-heading" className="scroll-mt-24">
               <StockMarginCalculator />
             </section>
-            <section id="currency-margin" aria-labelledby="cm-heading" className="scroll-mt-20">
+            <section id="currency-margin" aria-labelledby="cm-heading" className="scroll-mt-24">
               <CurrencyMarginCalculator />
             </section>
 
