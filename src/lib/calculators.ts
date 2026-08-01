@@ -198,7 +198,7 @@ const salesTax: CalcDef = {
     ];
   },
 };
-const vat: CalcDef = { ...salesTax, title: "VAT Calculator" };
+const vat: CalcDef = { ...salesTax, title: "VAT Calculator", description: "Add value added tax to a net price and see the tax amount and gross total." };
 
 const inflation: CalcDef = {
   title: "Inflation Calculator",
