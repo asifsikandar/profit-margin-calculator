@@ -59,10 +59,19 @@ export function CalculatorPage({
   const [values, setValues] = useState<Record<string, string>>(initial);
   const [results, setResults] = useState<CalcResult[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const currency = useCurrency();
+  const runRef = useRef<() => void>(() => {});
+
+  // Re-format results when the user switches currency.
+  useEffect(() => {
+    if (results) runRef.current();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currency.code]);
 
   function set(name: string, v: string) {
     setValues((s) => ({ ...s, [name]: v }));
   }
+
 
   function run() {
     setError(null);
