@@ -1049,7 +1049,7 @@ const rightTriangle: CalcDef = {
   },
 };
 
-const pythag: CalcDef = { ...rightTriangle, title: "Pythagorean Theorem Calculator" };
+const pythag: CalcDef = { ...rightTriangle, title: "Pythagorean Theorem Calculator", description: "Enter the two legs of a right triangle to find the hypotenuse (a² + b² = c²)." };
 
 const triangle: CalcDef = {
   title: "Triangle Calculator",
