@@ -2344,7 +2344,7 @@ const depreciation: CalcDef = {
   },
 };
 
-const leaseCalc: CalcDef = { ...autoLease, title: "Lease Calculator" };
+const leaseCalc: CalcDef = { ...autoLease, title: "Lease Calculator", description: "Estimate a lease payment from the asset value, residual value, term and money factor." };
 
 const budget: CalcDef = {
   title: "Budget Calculator",
