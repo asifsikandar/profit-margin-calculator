@@ -3007,7 +3007,25 @@ const mulch: CalcDef = {
   },
 };
 
-const gravel: CalcDef = { ...mulch, title: "Gravel Calculator" };
+const gravel: CalcDef = {
+  title: "Gravel Calculator",
+  description: "Work out how much gravel an area needs, in cubic yards and tons.",
+  fields: [
+    { name: "L", label: "Length", suffix: "ft", default: "20" },
+    { name: "W", label: "Width", suffix: "ft", default: "10" },
+    { name: "D", label: "Depth", suffix: "in", default: "3" },
+  ],
+  compute: (v) => {
+    const cf = reqPos(v.L, "Length") * reqPos(v.W, "Width") * (reqPos(v.D, "Depth") / 12);
+    const yd = cf / 27;
+    return [
+      { label: "Cubic yards", value: fmt(yd, 2) + " yd³", emphasize: true },
+      { label: "Cubic feet", value: fmt(cf, 2) + " ft³" },
+      { label: "Approx. weight", value: fmt(yd * 1.4, 2) + " US tons" },
+    ];
+  },
+  notes: "Weight assumes loose gravel at roughly 1.4 tons per cubic yard; ask your supplier for the exact density.",
+};
 
 // ============================================================
 // OTHER — MEASUREMENTS
