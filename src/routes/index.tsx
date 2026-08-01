@@ -70,7 +70,9 @@ const FINANCIAL_QUICK = [
   "401K","Interest Rate","Sales Tax",
 ];
 
+function Index() {
   return (
+
     <Layout>
       <div className="mx-auto max-w-7xl px-4 py-6">
         {/* SEO breadcrumb — visually hidden but present in DOM */}
