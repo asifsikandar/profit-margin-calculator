@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CalcButton, FieldRow, ResultPanel } from "./ResultPanel";
 import { DonutChart } from "./DonutChart";
+import { useCurrency } from "@/lib/currency";
 
 type Field = "cost" | "revenue" | "margin" | "profit";
 
@@ -25,6 +26,8 @@ export function ProfitMarginCalculator() {
   const [profit, setProfit] = useState("");
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const cur = useCurrency();
+  const sym = cur.symbol.trim();
 
   function calc() {
     setError(null);
@@ -91,25 +94,25 @@ export function ProfitMarginCalculator() {
   }
 
   const inputCls =
-    "w-full max-w-xs rounded border border-border bg-white px-2 py-1 text-sm outline-none focus:border-navy-light";
+    "w-full max-w-xs rounded-lg border border-hairline bg-white px-3 py-2 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
 
   return (
-    <section className="rounded border border-border bg-white p-4">
+    <section className="surface-card p-5 sm:p-6">
       <h2 className="mt-0">Profit Margin Calculator</h2>
       <p className="mb-3 text-sm text-muted-foreground">
         Fill in any two fields and click Calculate to compute the others.
       </p>
       <div className="space-y-3">
-        <FieldRow label="Cost ($)">
+        <FieldRow label={`Cost (${sym})`}>
           <input inputMode="decimal" className={inputCls} value={cost} onChange={(e) => setCost(e.target.value)} />
         </FieldRow>
-        <FieldRow label="Revenue ($)">
+        <FieldRow label={`Revenue (${sym})`}>
           <input inputMode="decimal" className={inputCls} value={revenue} onChange={(e) => setRevenue(e.target.value)} />
         </FieldRow>
         <FieldRow label="Margin (%)">
           <input inputMode="decimal" className={inputCls} value={margin} onChange={(e) => setMargin(e.target.value)} />
         </FieldRow>
-        <FieldRow label="Profit ($)">
+        <FieldRow label={`Profit (${sym})`}>
           <input inputMode="decimal" className={inputCls} value={profit} onChange={(e) => setProfit(e.target.value)} />
         </FieldRow>
       </div>
@@ -129,11 +132,11 @@ export function ProfitMarginCalculator() {
           <ResultPanel title="Result">
             <div className="grid gap-2 sm:grid-cols-3">
               <div><div className="text-xs uppercase text-muted-foreground">Margin</div><div className="text-lg font-bold">{result.margin.toFixed(2)}%</div></div>
-              <div><div className="text-xs uppercase text-muted-foreground">Profit</div><div className="text-lg font-bold">${result.profit.toFixed(2)}</div></div>
+              <div><div className="text-xs uppercase text-muted-foreground">Profit</div><div className="text-lg font-bold">{sym}{result.profit.toFixed(2)}</div></div>
               <div><div className="text-xs uppercase text-muted-foreground">Markup</div><div className="text-lg font-bold">{result.markup.toFixed(2)}%</div></div>
             </div>
             <div className="mt-3 text-xs text-muted-foreground">
-              Cost ${result.cost.toFixed(2)} · Revenue ${result.revenue.toFixed(2)}
+              Cost {sym}{result.cost.toFixed(2)} · Revenue {sym}{result.revenue.toFixed(2)}
             </div>
             <div className="mt-4">
               <DonutChart
