@@ -1,7 +1,9 @@
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { CalcButton, FieldRow, ResultPanel } from "@/components/ResultPanel";
+import { useCurrency, currencySymbol } from "@/lib/currency";
+
 
 export type FieldType = "number" | "text" | "select";
 
