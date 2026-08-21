@@ -50,9 +50,11 @@ const CATEGORY_PATH: Record<string, "/financial" | "/fitness-and-health" | "/mat
 export function CalculatorPage({
   def,
   category,
+  slug,
 }: {
   def: CalcDef;
   category: string;
+  slug?: string;
 }) {
   const initial: Record<string, string> = {};
   def.fields.forEach((f) => (initial[f.name] = f.default ?? ""));
