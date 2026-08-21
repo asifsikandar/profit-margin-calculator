@@ -96,13 +96,14 @@ export function CalculatorPage({
   }
 
   const inputCls =
-    "w-full max-w-xs rounded-lg border border-hairline bg-white px-3 py-2 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
+    "w-full max-w-[220px] rounded-md border border-hairline bg-white px-2.5 py-1.5 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
   const catLabel = CATEGORY_LABEL[category] ?? "Calculators";
   const catPath = CATEGORY_PATH[category] ?? "/";
+  const formula = def.formula ?? (slug ? getFormula(category, slug) : undefined);
 
   return (
     <Layout>
-      <div className="mx-auto max-w-4xl px-4 py-6">
+      <div className="mx-auto max-w-3xl px-4 py-5">
         <nav aria-label="Breadcrumb" className="sr-only">
           <ol>
             <li><Link to="/">Home</Link></li>
@@ -111,10 +112,10 @@ export function CalculatorPage({
           </ol>
         </nav>
 
-        <section className="surface-card p-5">
-          <h2 className="mt-0">{def.title}</h2>
+        <section className="surface-card p-4 sm:p-5">
+          <h2 className="mt-0 text-lg sm:text-xl">{def.title}</h2>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             {def.fields.map((f) => (
               <FieldRow key={f.name} label={f.label + (f.suffix ? ` (${f.suffix === "$" ? currency.symbol.trim() : f.suffix})` : "")}>
                 {f.type === "select" ? (
@@ -143,7 +144,7 @@ export function CalculatorPage({
               </FieldRow>
             ))}
           </div>
-          <div className="mt-4 flex gap-2">
+          <div className="mt-3 flex gap-2">
             <CalcButton onClick={run}>Calculate</CalcButton>
             <CalcButton variant="secondary" onClick={clear}>
               Clear
@@ -174,18 +175,26 @@ export function CalculatorPage({
           )}
         </section>
 
+        <div className="mt-4">
+          <AdSlot format="inline" />
+        </div>
+
         <section className="mt-4 surface-card p-5">
           <h1>{def.title}</h1>
           {def.description && (
-            <p className="mt-1 text-sm text-muted-foreground">{def.description}</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{def.description}</p>
           )}
         </section>
 
-
-        {def.formula && (
+        {formula && (
           <section className="mt-4 surface-card p-5 text-sm">
-            <h3 className="mt-0">Formula</h3>
-            <pre className="whitespace-pre-wrap font-mono text-xs">{def.formula}</pre>
+            <h3 className="mt-0">Formula and how it works</h3>
+            <pre className="mt-2 overflow-x-auto whitespace-pre-wrap rounded-lg bg-graybg p-4 font-mono text-xs leading-relaxed text-foreground">
+{formula}
+            </pre>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Enter your own values above and the calculator applies exactly this formula.
+            </p>
           </section>
         )}
 
@@ -194,10 +203,15 @@ export function CalculatorPage({
             {def.notes}
           </section>
         )}
+
+        <div className="mt-4">
+          <AdSlot format="rectangle" />
+        </div>
       </div>
     </Layout>
   );
 }
+
 
 // Helpers
 export function num(v: string | undefined): number {
