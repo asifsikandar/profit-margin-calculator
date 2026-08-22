@@ -3,6 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { CalcButton, FieldRow, ResultPanel } from "@/components/ResultPanel";
 import { useCurrency, currencySymbol } from "@/lib/currency";
+import { AdSlot } from "@/components/AdSlot";
+import { getFormula } from "@/lib/formulas";
 
 
 export type FieldType = "number" | "text" | "select";
