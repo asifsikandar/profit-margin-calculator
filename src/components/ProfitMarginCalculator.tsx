@@ -94,7 +94,7 @@ export function ProfitMarginCalculator() {
   }
 
   const inputCls =
-    "w-full max-w-xs rounded-lg border border-hairline bg-white px-3 py-2 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
+    "w-full sm:max-w-xs rounded-lg border border-hairline bg-white px-3 py-2 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
 
   return (
     <section className="surface-card p-5 sm:p-6">

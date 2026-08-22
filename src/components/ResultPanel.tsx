@@ -44,9 +44,9 @@ export function FieldRow({
   children: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-      <label className="text-sm sm:w-56">{label}</label>
-      <div className="flex-1">{children}</div>
+    <div className="grid grid-cols-1 gap-1 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)] sm:items-center sm:gap-3">
+      <label className="min-w-0 text-sm leading-snug text-foreground">{label}</label>
+      <div className="min-w-0">{children}</div>
     </div>
   );
 }
