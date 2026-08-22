@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { calcHref } from "@/lib/slug";
+import { AdSlot } from "@/components/AdSlot";
+
 
 type CategoryKey = "financial" | "fitness-and-health" | "math" | "other";
 
