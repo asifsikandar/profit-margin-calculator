@@ -5,10 +5,17 @@ interface AdSlotProps {
   className?: string;
 }
 
+/** Fixed reserved heights so ad slots never cause layout shift. */
 const SIZES: Record<string, string> = {
-  leaderboard: "min-h-[90px] sm:min-h-[110px]",
-  rectangle: "min-h-[250px]",
-  inline: "min-h-[100px]",
+  leaderboard: "h-[100px] sm:h-[120px]",
+  rectangle: "h-[250px]",
+  inline: "h-[110px]",
+};
+
+const WIDTHS: Record<string, string> = {
+  leaderboard: "max-w-5xl",
+  rectangle: "max-w-3xl",
+  inline: "max-w-3xl",
 };
 
 /**
@@ -20,7 +27,8 @@ export function AdSlot({ format = "leaderboard", label = "Advertisement", classN
     <aside
       aria-label={label}
       data-ad-slot={format}
-      className={`flex w-full flex-col items-center justify-center rounded-xl border border-dashed border-hairline bg-graybg/60 px-4 py-4 text-center ${SIZES[format]} ${className}`}
+      className={`mx-auto flex w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed border-hairline bg-graybg/60 px-4 text-center ${SIZES[format]} ${WIDTHS[format]} ${className}`}
+      style={{ contain: "layout size" }}
     >
       <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
         {label}

@@ -98,14 +98,14 @@ export function CalculatorPage({
   }
 
   const inputCls =
-    "w-full max-w-[220px] rounded-md border border-hairline bg-white px-2.5 py-1.5 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
+    "w-full sm:max-w-[240px] rounded-md border border-hairline bg-white px-2.5 py-1.5 text-sm shadow-sm outline-none transition-colors focus:border-navy-light focus:ring-2 focus:ring-lime/30";
   const catLabel = CATEGORY_LABEL[category] ?? "Calculators";
   const catPath = CATEGORY_PATH[category] ?? "/";
   const formula = def.formula ?? (slug ? getFormula(category, slug) : undefined);
 
   return (
     <Layout>
-      <div className="mx-auto max-w-3xl px-4 py-5">
+      <div className="mx-auto max-w-3xl px-4 py-5 sm:py-6">
         <nav aria-label="Breadcrumb" className="sr-only">
           <ol>
             <li><Link to="/">Home</Link></li>
@@ -117,7 +117,7 @@ export function CalculatorPage({
         <section className="surface-card p-4 sm:p-5">
           <h2 className="mt-0 text-lg sm:text-xl">{def.title}</h2>
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             {def.fields.map((f) => (
               <FieldRow key={f.name} label={f.label + (f.suffix ? ` (${f.suffix === "$" ? currency.symbol.trim() : f.suffix})` : "")}>
                 {f.type === "select" ? (
@@ -146,7 +146,7 @@ export function CalculatorPage({
               </FieldRow>
             ))}
           </div>
-          <div className="mt-3 flex gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             <CalcButton onClick={run}>Calculate</CalcButton>
             <CalcButton variant="secondary" onClick={clear}>
               Clear
@@ -162,11 +162,11 @@ export function CalculatorPage({
           {results && results.length > 0 && (
             <div className="mt-4">
               <ResultPanel title="Result">
-                <div className="grid gap-2 sm:grid-cols-2">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {results.map((r, i) => (
-                    <div key={i}>
+                    <div key={i} className="min-w-0">
                       <div className="text-xs uppercase text-muted-foreground">{r.label}</div>
-                      <div className={r.emphasize ? "text-xl font-bold" : "text-base font-semibold"}>
+                      <div className={`break-words ${r.emphasize ? "text-xl font-bold" : "text-base font-semibold"}`}>
                         {r.value}
                       </div>
                     </div>
@@ -177,19 +177,19 @@ export function CalculatorPage({
           )}
         </section>
 
-        <div className="mt-4">
+        <div className="mt-6">
           <AdSlot format="inline" />
         </div>
 
-        <section className="mt-4 surface-card p-5">
+        <section className="mt-6 surface-card p-5 sm:p-6">
           <h1>{def.title}</h1>
           {def.description && (
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{def.description}</p>
+            <p className="mt-2 text-[15px] leading-7 text-muted-foreground">{def.description}</p>
           )}
         </section>
 
         {formula && (
-          <section className="mt-4 surface-card p-5 text-sm">
+          <section className="mt-6 surface-card p-5 text-sm leading-relaxed sm:p-6">
             <h3 className="mt-0">Formula and how it works</h3>
             <pre className="mt-2 overflow-x-auto whitespace-pre-wrap rounded-lg bg-graybg p-4 font-mono text-xs leading-relaxed text-foreground">
 {formula}
@@ -201,12 +201,12 @@ export function CalculatorPage({
         )}
 
         {def.notes && (
-          <section className="mt-4 surface-card p-5 text-sm">
+          <section className="mt-6 surface-card p-5 text-sm leading-relaxed sm:p-6">
             {def.notes}
           </section>
         )}
 
-        <div className="mt-4">
+        <div className="mt-6">
           <AdSlot format="rectangle" />
         </div>
       </div>
