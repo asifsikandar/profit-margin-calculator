@@ -36,7 +36,7 @@ const CATEGORY_LABEL: Record<string, string> = {
 function CalcRoute() {
   const { category, slug } = Route.useParams();
   const def = getCalculator(category, slug);
-  if (def) return <CalculatorPage def={def} category={category} />;
+  if (def) return <CalculatorPage def={def} category={category} slug={slug} />;
   const title = slug.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase()) + " Calculator";
   const catLabel = CATEGORY_LABEL[category] ?? "Calculators";
   return (
