@@ -103,9 +103,13 @@ export function CalculatorPage({
   const catPath = CATEGORY_PATH[category] ?? "/";
   const formula = def.formula ?? (slug ? getFormula(category, slug) : undefined);
 
+  const faqs = buildFaqs(def, catLabel);
+  const examples = buildExamples(def);
+
   return (
     <Layout>
-      <div className="mx-auto max-w-3xl px-4 py-5 sm:py-6">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-5 sm:py-6 lg:flex-row">
+        <div className="min-w-0 flex-1">
         <nav aria-label="Breadcrumb" className="sr-only">
           <ol>
             <li><Link to="/">Home</Link></li>
