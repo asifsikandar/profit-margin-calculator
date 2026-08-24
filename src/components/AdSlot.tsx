@@ -1,6 +1,6 @@
 interface AdSlotProps {
   /** Layout format of the ad placeholder */
-  format?: "leaderboard" | "rectangle" | "inline";
+  format?: "leaderboard" | "rectangle" | "inline" | "square";
   label?: string;
   className?: string;
 }
@@ -10,12 +10,14 @@ const SIZES: Record<string, string> = {
   leaderboard: "h-[100px] sm:h-[120px]",
   rectangle: "h-[250px]",
   inline: "h-[110px]",
+  square: "h-[300px]",
 };
 
 const WIDTHS: Record<string, string> = {
   leaderboard: "max-w-5xl",
   rectangle: "max-w-3xl",
   inline: "max-w-3xl",
+  square: "max-w-[300px]",
 };
 
 /**
