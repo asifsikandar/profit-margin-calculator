@@ -103,9 +103,13 @@ export function CalculatorPage({
   const catPath = CATEGORY_PATH[category] ?? "/";
   const formula = def.formula ?? (slug ? getFormula(category, slug) : undefined);
 
+  const faqs = buildFaqs(def, catLabel);
+  const examples = buildExamples(def);
+
   return (
     <Layout>
-      <div className="mx-auto max-w-3xl px-4 py-5 sm:py-6">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-5 sm:py-6 lg:flex-row">
+        <div className="min-w-0 flex-1">
         <nav aria-label="Breadcrumb" className="sr-only">
           <ol>
             <li><Link to="/">Home</Link></li>
@@ -206,13 +210,114 @@ export function CalculatorPage({
           </section>
         )}
 
+        <section className="mt-6 surface-card p-5 sm:p-6">
+          <h2 className="mt-0 text-lg sm:text-xl">About the {def.title}</h2>
+          <p className="mt-2 text-[15px] leading-7 text-muted-foreground">
+            The {def.title} is a free online tool that turns the inputs above into an instant,
+            accurate answer. It is part of our {catLabel.toLowerCase()} collection and runs entirely
+            in your browser, so nothing you type is stored or sent anywhere.
+          </p>
+          <p className="mt-3 text-[15px] leading-7 text-muted-foreground">
+            Fill in every field, press <strong>Calculate</strong>, and the result updates straight
+            away. Use <strong>Clear</strong> to reset the form and try a different scenario. Values
+            shown in a currency follow the currency you pick in the site header.
+          </p>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-[15px] leading-7 text-muted-foreground">
+            <li>Works on mobile, tablet and desktop.</li>
+            <li>No sign-up, no limits, no hidden steps.</li>
+            <li>Results are estimates for planning and learning purposes.</li>
+          </ul>
+        </section>
+
+        <section className="mt-6 surface-card p-5 sm:p-6">
+          <h2 className="mt-0 text-lg sm:text-xl">Examples</h2>
+          <ol className="mt-2 space-y-3 text-[15px] leading-7 text-muted-foreground">
+            {examples.map((ex, i) => (
+              <li key={i}>
+                <span className="font-semibold text-foreground">Example {i + 1}: </span>
+                {ex}
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="mt-6 surface-card p-5 sm:p-6">
+          <h2 className="mt-0 text-lg sm:text-xl">Frequently asked questions</h2>
+          <dl className="mt-2 space-y-4 text-[15px] leading-7">
+            {faqs.map((f, i) => (
+              <div key={i}>
+                <dt className="font-semibold text-foreground">{f.q}</dt>
+                <dd className="text-muted-foreground">{f.a}</dd>
+              </div>
+            ))}
+          </dl>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: faqs.map((f) => ({
+                  "@type": "Question",
+                  name: f.q,
+                  acceptedAnswer: { "@type": "Answer", text: f.a },
+                })),
+              }),
+            }}
+          />
+        </section>
+
         <div className="mt-6">
           <AdSlot format="rectangle" />
         </div>
+        </div>
+
+        <aside aria-label="Advertisement sidebar" className="w-full space-y-6 lg:w-[300px] lg:shrink-0">
+          <AdSlot format="square" className="mx-auto lg:mx-0" />
+          <AdSlot format="square" className="mx-auto lg:mx-0" />
+          <AdSlot format="square" className="mx-auto lg:mx-0" />
+        </aside>
       </div>
     </Layout>
   );
 }
+
+function buildFaqs(def: CalcDef, catLabel: string): { q: string; a: string }[] {
+  const first = def.fields[0]?.label ?? "the required values";
+  return [
+    {
+      q: `How do I use the ${def.title}?`,
+      a: `Enter ${first.toLowerCase()} and the remaining fields, then press Calculate. The result appears directly under the form, and Clear resets everything.`,
+    },
+    {
+      q: `Is the ${def.title} free?`,
+      a: "Yes. Every calculator on this site is completely free, needs no account, and has no usage limits.",
+    },
+    {
+      q: "How accurate are the results?",
+      a: "The calculator applies the standard formula shown on this page. Results are mathematically correct for the values you enter, but real-world figures can differ because of fees, taxes, rounding or other factors.",
+    },
+    {
+      q: "Do you store the numbers I enter?",
+      a: "No. All calculations happen in your browser and nothing you type is saved or transmitted.",
+    },
+    {
+      q: `Where can I find similar tools?`,
+      a: `Browse the ${catLabel} category for related calculators, or use the search box in the header to jump straight to the tool you need.`,
+    },
+  ];
+}
+
+function buildExamples(def: CalcDef): string[] {
+  const names = def.fields.map((f) => f.label);
+  const list = names.slice(0, 3).join(", ") || "the input fields";
+  return [
+    `Fill in ${list} with your own figures and press Calculate to see the result instantly.`,
+    `Change a single value, for example ${names[0] ?? "the first field"}, and recalculate to compare two scenarios side by side.`,
+    `Press Clear to reset the form, then try a best-case and a worst-case set of numbers to understand the range of possible outcomes.`,
+  ];
+}
+
 
 
 // Helpers

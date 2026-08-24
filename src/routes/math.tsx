@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { CategoryListingPage } from "@/components/CategoryListingPage";
-import { BasicCalculatorWidget } from "@/components/BasicCalculatorWidget";
+
 
 export const Route = createFileRoute("/math")({
   head: () => ({
@@ -25,7 +25,6 @@ function Page() {
         categoryLabel="Math"
         subtext="Use the basic math calculator to do simple calculations or use one of the following calculators."
         linkListLayout="flat-1col"
-        centerWidget={<BasicCalculatorWidget />}
         ungrouped={["Scientific","Fraction","Percentage","Random Number Generator","Percent Error","Exponent","Binary","Hex","Half-Life","Quadratic Formula","Log","Ratio","Root","Least Common Multiple","Greatest Common Factor","Factor","Rounding","Matrix","Scientific Notation","Big Number"]}
         groups={[
           { title: "Statistics", items: ["Standard Deviation","Number Sequence","Sample Size","Probability","Statistics","Mean/Median/Mode/Range","Permutation and Combination","Z-score","Confidence Interval"] },
