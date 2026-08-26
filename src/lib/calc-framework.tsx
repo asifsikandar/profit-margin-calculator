@@ -5,6 +5,8 @@ import { CalcButton, FieldRow, ResultPanel } from "@/components/ResultPanel";
 import { useCurrency, currencySymbol } from "@/lib/currency";
 import { AdSlot } from "@/components/AdSlot";
 import { getFormula } from "@/lib/formulas";
+import { ResultChart } from "@/components/ResultChart";
+import { CalculatorLongForm, buildCalculatorFaqs } from "@/lib/page-content";
 
 
 export type FieldType = "number" | "text" | "select";
