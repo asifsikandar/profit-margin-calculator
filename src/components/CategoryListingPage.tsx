@@ -95,6 +95,8 @@ export function CategoryListingPage({
               ))}
             </div>
           )}
+
+          <CategoryLongForm categoryKey={categoryKey} categoryLabel={categoryLabel} />
         </div>
 
         <Sidebar
