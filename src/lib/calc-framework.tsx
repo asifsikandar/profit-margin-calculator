@@ -261,42 +261,6 @@ export function CalculatorPage({
   );
 }
 
-function buildFaqs(def: CalcDef, catLabel: string): { q: string; a: string }[] {
-  const first = def.fields[0]?.label ?? "the required values";
-  return [
-    {
-      q: `How do I use the ${def.title}?`,
-      a: `Enter ${first.toLowerCase()} and the remaining fields, then press Calculate. The result appears directly under the form, and Clear resets everything.`,
-    },
-    {
-      q: `Is the ${def.title} free?`,
-      a: "Yes. Every calculator on this site is completely free, needs no account, and has no usage limits.",
-    },
-    {
-      q: "How accurate are the results?",
-      a: "The calculator applies the standard formula shown on this page. Results are mathematically correct for the values you enter, but real-world figures can differ because of fees, taxes, rounding or other factors.",
-    },
-    {
-      q: "Do you store the numbers I enter?",
-      a: "No. All calculations happen in your browser and nothing you type is saved or transmitted.",
-    },
-    {
-      q: `Where can I find similar tools?`,
-      a: `Browse the ${catLabel} category for related calculators, or use the search box in the header to jump straight to the tool you need.`,
-    },
-  ];
-}
-
-function buildExamples(def: CalcDef): string[] {
-  const names = def.fields.map((f) => f.label);
-  const list = names.slice(0, 3).join(", ") || "the input fields";
-  return [
-    `Fill in ${list} with your own figures and press Calculate to see the result instantly.`,
-    `Change a single value, for example ${names[0] ?? "the first field"}, and recalculate to compare two scenarios side by side.`,
-    `Press Clear to reset the form, then try a best-case and a worst-case set of numbers to understand the range of possible outcomes.`,
-  ];
-}
-
 
 
 // Helpers
