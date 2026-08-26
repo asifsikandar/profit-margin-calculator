@@ -105,8 +105,7 @@ export function CalculatorPage({
   const catPath = CATEGORY_PATH[category] ?? "/";
   const formula = def.formula ?? (slug ? getFormula(category, slug) : undefined);
 
-  const faqs = buildFaqs(def, catLabel);
-  const examples = buildExamples(def);
+  const faqs = buildCalculatorFaqs(def.title, def.fields, catLabel);
 
   return (
     <Layout>
