@@ -177,6 +177,7 @@ export function CalculatorPage({
                     </div>
                   ))}
                 </div>
+                <ResultChart items={results.map((r) => ({ label: r.label, value: r.value }))} />
               </ResultPanel>
             </div>
           )}
