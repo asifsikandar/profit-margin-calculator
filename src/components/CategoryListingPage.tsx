@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Sidebar } from "./Sidebar";
 import { calcHref } from "@/lib/slug";
+import { CategoryLongForm } from "@/lib/page-content";
 
 type CategoryKey = "financial" | "fitness-and-health" | "math" | "other";
 
@@ -94,6 +95,8 @@ export function CategoryListingPage({
               ))}
             </div>
           )}
+
+          <CategoryLongForm categoryKey={categoryKey} categoryLabel={categoryLabel} />
         </div>
 
         <Sidebar

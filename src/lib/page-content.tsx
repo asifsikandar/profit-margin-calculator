@@ -339,6 +339,105 @@ export function CalculatorLongForm({
       </section>
 
       <section className={SECTION}>
+        <h2 className={H}>How popular is the {title} and why does it matter day to day?</h2>
+        <p className={P}>
+          Online calculators are one of the most consistently searched categories on the internet.
+          Across the web, general-purpose calculator websites attract tens of millions of visits every
+          month, and tools in the {categoryLabel.toLowerCase()} family sit firmly inside the most
+          requested group because the questions they answer come up again and again in ordinary life.
+          The {title} belongs to that everyday tier: it is not a specialist instrument used once a
+          year, it is the kind of page people open on a phone while standing in a shop, sitting in a
+          meeting, filling in a form or checking a quote.
+        </p>
+        <p className={P}>
+          We do not publish invented traffic figures or a made-up global ranking for this page,
+          because a number nobody can verify is worth nothing to you. What we can describe honestly is
+          the pattern of demand. Tools in this family are used heavily at the start of the month, at
+          the start of a tax or academic year, and whenever people are comparing two options and need
+          a single figure to settle the argument. Usage rises sharply on mobile in the evenings, which
+          is why this page is built to load fast and work with one thumb.
+        </p>
+        <p className={P}>
+          The practical importance is simple. Doing this calculation by hand is possible, but it is
+          slow and it is where mistakes creep in: a misplaced decimal, a percentage applied to the
+          wrong base, a monthly figure compared against an annual one. Each of those errors changes a
+          decision, and decisions in this area involve money, health or materials. Using a tool that
+          applies the same formula every time removes the arithmetic risk and leaves you free to think
+          about the part that actually needs judgement, which is whether your inputs are realistic.
+        </p>
+        <p className={P}>
+          Over a year, a person who uses this kind of calculator regularly saves a meaningful amount
+          of time and avoids at least a handful of costly slips. That is the real reason these pages
+          rank among the most visited utilities on the web: they are small, they are free, and they
+          quietly prevent expensive mistakes.
+        </p>
+      </section>
+
+      <section className={SECTION}>
+        <h2 className={H}>Terms of use for this calculator</h2>
+        <p className={P}>
+          The {title} is provided for general information and educational purposes only. It does not
+          constitute financial, investment, tax, legal, medical or engineering advice, and no
+          professional relationship is created by your use of it. You remain responsible for checking
+          any figure before acting on it, and for consulting a suitably qualified professional when
+          the decision carries real consequences.
+        </p>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-7 text-muted-foreground">
+          <li>Results are estimates produced from the values you enter and the formula shown above.</li>
+          <li>We make no warranty that outputs are accurate, complete or fit for a particular purpose.</li>
+          <li>We are not liable for any loss arising from reliance on a result from this page.</li>
+          <li>You may use results freely for personal, educational and internal business purposes.</li>
+          <li>Automated scraping that degrades the service for other visitors is not permitted.</li>
+          <li>Formulas, layout, wording and code on this page are original work and remain our property.</li>
+        </ul>
+        <p className={P}>
+          The full site terms, including intellectual property and acceptable use, are set out on the{" "}
+          <Link to="/terms" className="text-linkblue font-medium hover:underline">Terms of Use</Link>{" "}
+          page, and our data practices are described in the{" "}
+          <Link to="/privacy-policy" className="text-linkblue font-medium hover:underline">Privacy Policy</Link>.
+          Because this calculator runs entirely in your browser, no value you type is transmitted to
+          us or stored on any server.
+        </p>
+      </section>
+
+      <section className={SECTION}>
+        <h2 className={H}>Contact and support</h2>
+        <p className={P}>
+          Found a formula you disagree with, spotted a result that looks wrong, or need a calculator
+          we have not built yet? We genuinely want to hear about it, and corrections are applied
+          quickly because an inaccurate tool is worse than no tool at all.
+        </p>
+        <ul className="mt-3 space-y-2 text-[15px] leading-7 text-muted-foreground">
+          <li>
+            <strong className="text-foreground">Email:</strong>{" "}
+            <a className="text-linkblue font-medium hover:underline" href="mailto:codingtronpvtLtd.@gmail.com">
+              codingtronpvtLtd.@gmail.com
+            </a>
+          </li>
+          <li>
+            <strong className="text-foreground">Phone / WhatsApp:</strong>{" "}
+            <a className="text-linkblue font-medium hover:underline" href="tel:+923207822110">+92 320 7822110</a>
+          </li>
+          <li>
+            <strong className="text-foreground">Address:</strong> Codingtron Pvt Ltd, Pakistan
+          </li>
+          <li>
+            <strong className="text-foreground">Support hours:</strong> Monday to Saturday, 9:00 to 18:00 (PKT)
+          </li>
+          <li>
+            <strong className="text-foreground">Response time:</strong> most messages answered within one to two working days
+          </li>
+        </ul>
+        <p className={P}>
+          When reporting a problem, please include the name of the calculator, the exact values you
+          entered and the result you expected. That single detail turns a vague report into a fix. You
+          can also use the{" "}
+          <Link to="/contact" className="text-linkblue font-medium hover:underline">contact page</Link>{" "}
+          if you prefer a form.
+        </p>
+      </section>
+
+      <section className={SECTION}>
         <h2 className={H}>Explore more {categoryLabel.toLowerCase()} tools</h2>
         <p className={P}>
           One calculation rarely stands alone. If this tool answered part of your question, the rest
