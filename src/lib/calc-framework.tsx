@@ -212,36 +212,13 @@ export function CalculatorPage({
           </section>
         )}
 
-        <section className="mt-6 surface-card p-5 sm:p-6">
-          <h2 className="mt-0 text-lg sm:text-xl">About the {def.title}</h2>
-          <p className="mt-2 text-[15px] leading-7 text-muted-foreground">
-            The {def.title} is a free online tool that turns the inputs above into an instant,
-            accurate answer. It is part of our {catLabel.toLowerCase()} collection and runs entirely
-            in your browser, so nothing you type is stored or sent anywhere.
-          </p>
-          <p className="mt-3 text-[15px] leading-7 text-muted-foreground">
-            Fill in every field, press <strong>Calculate</strong>, and the result updates straight
-            away. Use <strong>Clear</strong> to reset the form and try a different scenario. Values
-            shown in a currency follow the currency you pick in the site header.
-          </p>
-          <ul className="mt-3 list-disc space-y-1 pl-5 text-[15px] leading-7 text-muted-foreground">
-            <li>Works on mobile, tablet and desktop.</li>
-            <li>No sign-up, no limits, no hidden steps.</li>
-            <li>Results are estimates for planning and learning purposes.</li>
-          </ul>
-        </section>
-
-        <section className="mt-6 surface-card p-5 sm:p-6">
-          <h2 className="mt-0 text-lg sm:text-xl">Examples</h2>
-          <ol className="mt-2 space-y-3 text-[15px] leading-7 text-muted-foreground">
-            {examples.map((ex, i) => (
-              <li key={i}>
-                <span className="font-semibold text-foreground">Example {i + 1}: </span>
-                {ex}
-              </li>
-            ))}
-          </ol>
-        </section>
+        <CalculatorLongForm
+          title={def.title}
+          category={category}
+          categoryLabel={catLabel}
+          categoryPath={catPath}
+          fields={def.fields}
+        />
 
         <section className="mt-6 surface-card p-5 sm:p-6">
           <h2 className="mt-0 text-lg sm:text-xl">Frequently asked questions</h2>
